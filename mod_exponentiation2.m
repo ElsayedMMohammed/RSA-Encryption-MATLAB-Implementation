@@ -1,10 +1,10 @@
+%% This function computes the modular exponentiation for (x^y mod z)
+
 function product = mod_exponentiation2(x,y,z) 
-  % a function to get the modular exponentiation for (x^y mod z)
-  
-  [P,len_P] = get_binary_components2(y);
-  %C = zeros(log2(P(len_P))+mod(y,2),2);
-  C = zeros(len_P,2);
-  
+
+   [P,len_P] = get_binary_components2(y);
+   C = zeros(len_P,2);
+   
   % The first row
   C(1,1) = 1; C(1,2)= mod(x,z);
   
