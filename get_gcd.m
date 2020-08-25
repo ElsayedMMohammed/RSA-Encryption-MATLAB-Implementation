@@ -1,6 +1,11 @@
+%% This function computes the GCD between two numbers using the Eculidian Algorithm
+ % Input: (x,y) the two numbers to get GCD between
+ % Output: (1) --> gcd
+  %        (2) --> a matrix holds the coeffecients from the Eculidian Algorithm
+  
 function [gcd,mat]=get_gcd(x,y)
   mat = zeros(1,4); %the matrix contains all the coeffecients
- if y>x %swap
+ if y>x %Swap
     temp = x;  x=y; y=temp; 
  end
  
