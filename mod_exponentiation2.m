@@ -16,10 +16,10 @@ function product = mod_exponentiation2(x,y,z)
     end
   end
   
-  powers = 1;
+powers = ones(len_P,1);
 for i=1:length(P)
     tt = C(:,1)==P(i);
-    powers =[powers C(tt,2)];
+    powers(i+1)=  C(tt,2);
 end
 
 product =1;
