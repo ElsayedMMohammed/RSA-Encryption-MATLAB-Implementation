@@ -1,6 +1,6 @@
 %% The main script to apply RSA encryption algorithm and get the text
 clear; clc;
-bits = 9; %Specifiy the number of bits of the machine (MAX = 13)
+bits = 8; %Specifiy the number of bits of the machine (MAX = 8) in this case..
 
 %% (1) Get 2 distinct prime numbers between min, max.
   min = 2^(bits-1); max=2^bits;
@@ -22,12 +22,12 @@ bits = 9; %Specifiy the number of bits of the machine (MAX = 13)
   dstnID = fopen('Encrypted_Text.txt','wt'); %opens destination file
   txt_string = fscanf(srcID,'%c'); %reads txt from source into matrix
   txt = double(txt_string); %converts txt char into asci
-  [r,c] = size(txt);
-  nums = zeros(r,c);
+  [rows,cols] = size(txt);
+  nums = zeros(rows,cols);
 
   
-  for i=1:r
-      for j=1:c
+  for i=1:rows
+      for j=1:cols
          m = txt(i,j);
          c = mod_exponentiation2(m,e,n);
          %m2 = mod_exponentiation2(c,d,n);
@@ -44,20 +44,18 @@ bits = 9; %Specifiy the number of bits of the machine (MAX = 13)
   dstnID = fopen('Decrypted_Text.txt','wt'); %opens destination file
   txt_e_string = fscanf(srcID,'%c'); %reads txt from source into matrix
   txt_e = double(txt_e_string); %converts txt char into asci
-  sum(txt_e == nums)/length(txt_e)
-  [r,c] = size(txt_e);
-  nums_d = zeros(r,c);
+  [rows,cols] = size(txt_e);
+  nums_d = zeros(rows,cols);
   
-  for i=1:r
-      for j=1:c
+  for i=1:rows
+      for j=1:cols
          m = txt_e(i,j);
          m2 = mod_exponentiation2(m,d,n);
          nums_d(i,j)=m2;
         
       end
   end
-  sum(nums_d == txt)/length(txt)
   
-  fprintf(dstnID,'%s',nums_d); %writes txt to destination file (as string, so the ascii codes are converted to characters)
+  fprintf(dstnID,'%s',char(nums_d)); %writes txt to destination file (as string, so the ascii codes are converted to characters)
   fclose(srcID);
   fclose(dstnID);
